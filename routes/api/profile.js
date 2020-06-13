@@ -14,7 +14,7 @@ router.get('/me', hauth, async (req, res) => {
   try {
     const profile = await Profile.findOne({
       user: req.user.id,
-    }).populate('User', ['name', 'avatar']);
+    }).populate('user', ['name', 'avatar']);
     //'name' and 'avatar are present in User model, not in Profile model. So, we are populating the profile by bringing 'name' and 'avatar' from the User model
 
     if (!profile) {
