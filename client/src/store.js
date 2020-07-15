@@ -5,6 +5,9 @@ import rootReducer from './reducers';
 
 const initialState = {};
 
+/*Redux Thunk middleware allows you to write action creators that return a function instead of an action.
+Motivation:
+https://www.npmjs.com/package/redux-thunk*/
 const middleware = [thunk];
 
 const store = createStore(

@@ -1,10 +1,12 @@
 import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
+
 import PropTypes from 'prop-types';
 
-const Register = ({ setAlert }) => {
+const Register = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -23,9 +25,13 @@ const Register = ({ setAlert }) => {
     if (password !== password2) {
       setAlert('Passwords do not match', 'danger');
     } else {
-      console.log('SUCCESS');
+      register({ name, email, password });
     }
   };
+
+  if (isAuthenticated) {
+    return <Redirect to='/dashboard' />;
+  }
   return (
     <Fragment>
       <h1 className='large text-primary'>Sign Up</h1>
@@ -47,7 +53,6 @@ const Register = ({ setAlert }) => {
             onChange={(e) => {
               handleOnChange(e);
             }}
-            required
           />
         </div>
         <div className='form-group'>
@@ -59,7 +64,6 @@ const Register = ({ setAlert }) => {
             onChange={(e) => {
               handleOnChange(e);
             }}
-            required
           />
           <small className='form-text'>
             This site uses Gravatar so if you want a profile image, use a
@@ -71,12 +75,10 @@ const Register = ({ setAlert }) => {
             type='password'
             placeholder='Password'
             name='password'
-            minLength='6'
             value={password}
             onChange={(e) => {
               handleOnChange(e);
             }}
-            required
           />
         </div>
         <div className='form-group'>
@@ -84,12 +86,10 @@ const Register = ({ setAlert }) => {
             type='password'
             placeholder='Confirm Password'
             name='password2'
-            minLength='6'
             value={password2}
             onChange={(e) => {
               handleOnChange(e);
             }}
-            required
           />
         </div>
         <input type='submit' className='btn btn-primary' value='Register' />
@@ -101,14 +101,16 @@ const Register = ({ setAlert }) => {
   );
 };
 
+/*Validating the propTypes of the Register component so that no invalid value is provided for a prop. Here I am setting that setAlert must be a function and it must be provided by adding .func and .isRequired*/
+
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
 };
-export default connect(null, { setAlert })(Register);
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
 
-/*Connect takes in two things:
-1. Any state that you want to map, if we want to get any state from alert
-2. An object with alerts you want to use. This will allow us to use props
-
-We have written (Register) to connect the Register component with redux
-*/
+/*Connecting the Register component with the redux store while binding the dispatch of the store to setAlert, register action creators*/
+export default connect(mapStateToProps, { setAlert, register })(Register);

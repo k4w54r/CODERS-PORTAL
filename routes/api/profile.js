@@ -5,6 +5,7 @@ const router = express.Router();
 const hauth = require('../../handlers/hauth');
 const User = require('../../models/User');
 const Profile = require('../../models/Profile');
+const Post = require('../../models/Post');
 const { check, validationResult } = require('express-validator');
 
 // @route   GET api/profile/me
@@ -148,9 +149,12 @@ router.get('/user/:user_id', async (req, res) => {
 
 router.delete('/', hauth, async (req, res) => {
   try {
-    // @todo - remove user's posts
+    // Remove posts
+    await Post.deleteMany({ user: req.user.id });
     // Remove profile
     await Profile.findOneAndRemove({ user: req.user.id });
+
+    // Remove user
     await User.findOneAndRemove({ _id: req.user.id });
 
     res.json({ msg: 'User Deleted' });
@@ -252,7 +256,6 @@ router.put(
     [
       check('school', 'School is required').not().isEmpty(),
       check('degree', 'Degree is required').not().isEmpty(),
-      check('fieldOfStudy', 'Field of Study is required').not().isEmpty(),
       check('from', 'From Date is required').not().isEmpty(),
     ],
   ],
@@ -262,20 +265,11 @@ router.put(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const {
-      school,
-      degree,
-      fieldOfStudy,
-      from,
-      to,
-      current,
-      description,
-    } = req.body;
+    const { school, degree, from, to, current, description } = req.body;
 
     const newEdu = {
       school,
       degree,
-      fieldOfStudy,
       from,
       to,
       current,

@@ -40,7 +40,6 @@ router.post(
     try {
       //Check Credentials
       let user = await User.findOne({ email: email });
-      console.log(email);
 
       if (!user) {
         return res
