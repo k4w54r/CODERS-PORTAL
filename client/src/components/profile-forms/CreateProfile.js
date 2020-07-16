@@ -1,5 +1,5 @@
 import React, { useState, Fragment } from 'react';
-import { Link, withRouter } from 'react-router-dom'; //withRouter is for using the history object
+import { withRouter } from 'react-router-dom'; //withRouter is for using the history object
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createProfile } from '../../actions/profile';
