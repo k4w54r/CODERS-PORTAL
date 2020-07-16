@@ -16,4 +16,6 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(...middleware))
 );
 
+// store টা reducer use করার জন্য rootReducer function টা কে call করবে, store এর state হিসেবে initialState এর ভিতরে যা আছে তা use করবে এবং applyMiddleware র মাধ্যমে middleware array এর মধ্যে যতগুলা middleware আছে, সে সবগুলা middleware use করবে
+
 export default store;

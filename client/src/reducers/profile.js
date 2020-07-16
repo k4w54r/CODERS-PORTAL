@@ -55,3 +55,5 @@ export default function (state = initialState, action) {
       return state;
   }
 }
+
+//কোথাও state.profile লিখলে এই 'profile' নামক reducer র মধ্যে state এর যতটুকু অংশ আছে, ততটুকু অংশই শুধু use হবে। এভাবে reducer এর নাম অনুসারেই state এর নির্দিষ্ট অংশ use করা যাবে
