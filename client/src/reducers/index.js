@@ -2,10 +2,12 @@ import { combineReducers } from 'redux';
 import alert from './alert';
 import auth from './auth';
 import profile from './profile';
+import post from './post';
 export default combineReducers({
   alert,
   auth,
   profile,
+  post,
 });
 
 //এটা হল rootReducer. ./reducer হিসেবে export করলে combineReducers function টা export হবে কারণ এ function টা এ file টার default export আর এ file টা reducer folder এর index.js file

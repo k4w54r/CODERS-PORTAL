@@ -114,7 +114,6 @@ router.put('/like/:id', hauth, async (req, res) => {
     //Check if the post has already been liked by this user
     if (
       post.likes.filter((like) => {
-        console.log(like);
         return like.user.toString() === req.user.id;
       }).length > 0
       //post টার likes array তে গিয়ে array টার যে যে element এর user req.user.id এর সমান সে element গুলো filter করে বের করতেসে এবং .length দিয়ে দেখতেসে এরকম  কয়টা element arrray টাতে আছে। এরকম যতোটা element array টাতে আছে, ঐ user ঐ post এ ততোবার like দিসে। length>0 হওয়ার অর্থ ঐ user already ঐ পোস্টে এক/একাধিকবার like দিসে।
