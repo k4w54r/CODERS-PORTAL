@@ -1,0 +1,6 @@
+{
+  "mongoURI": "mongodb+srv://kawsar123:kawsar123@codersportal-fsbkk.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "ksecret",
+  "githubClientId": "5f5be41a2e802b635b5f",
+  "githubSecret": "23d4853ee89fb3529ecc44d0371eebb2dbb15c77"
+}
