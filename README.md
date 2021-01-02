@@ -1,4 +1,4 @@
-# CODERS-PORTAL
+# CODERS PORTAL
 A Social Networking Portal For Coders
 
 ## Features
