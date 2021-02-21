@@ -2,15 +2,16 @@ import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import Head from '../../img/head.png';
 const Landing = ({ isAuthenticated }) => {
   if (isAuthenticated) {
     return <Redirect to='/dashboard' />;
   }
   return (
-    <section className='landing'>
+    <div className='landing'>
       <div className='dark-overlay'>
         <div className='landing-inner'>
-          <h1 className='x-large'>Coders Portal</h1>
+          <img src={Head} width='1026' height='136' alt='CODERS PORTAL' />
           <p className='lead'>
             Create a coder profile/portfolio, share posts and get help from
             other coders
@@ -25,7 +26,7 @@ const Landing = ({ isAuthenticated }) => {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

@@ -39,10 +39,11 @@ const App = () => {
       <Router>
         <Fragment>
           <Navbar />
-          <Route exact path='/' component={Landing} />
-          <section className='container'>
-            <Alert />
-            <Switch>
+          <Switch>
+            <Route exact path='/' component={Landing} />
+            <section className='container'>
+              <Alert />
+
               <Route exact path='/register' component={Register} />
               <Route exact path='/login' component={Login} />
               <Route exact path='/profiles' component={Profiles} />
@@ -72,8 +73,8 @@ const App = () => {
               <PrivateRoute exact path='/posts' component={Posts} />
               <PrivateRoute exact path='/posts/:id' component={Post} />
               {/*এই :id টাই Post component এর props.match.params.id এর মধ্যে থাকবে, যেটাকে সেই component এর ভিতরে use করা হয়েছে */}
-            </Switch>
-          </section>
+            </section>
+          </Switch>
         </Fragment>
       </Router>
     </Provider>

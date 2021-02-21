@@ -13,7 +13,7 @@ props.match এর params এর মধ্যে url এর শেষে যে 
 const Post = ({ getPost, post: { post, loading }, match }) => {
   useEffect(() => {
     getPost(match.params.id);
-  }, [getPost]);
+  }, [getPost, match.params.id]);
 
   return loading || post === null ? (
     <Spinner />
