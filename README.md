@@ -30,7 +30,7 @@ A Social Networking Portal For Coders
 * React
 * Node
 
-## Live Demo
+## Deployed Site
 
-Live demo is [here](https://codersportal.herokuapp.com/).
+Deployed [here](https://codersportal.herokuapp.com/).
 
